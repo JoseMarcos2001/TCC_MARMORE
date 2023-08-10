@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="teste.css">
+    
+
+    <script src="script.js" async></script>
+
+    <title>Orçamento</title>
+  </head>
+  <body>
+
+
+    <main class="main-section">
+      
+
+      <section class="container normal-section">
+        <h2 class="section-title">Produtos</h2>
+
+        <div class="products-container">
+          <div class="movie-product">
+            <strong class="product-title">Soleira</strong>
+            <!-- <br> -->
+            <img src="images/produto1.webp" alt="Soleira" class="product-image">
+            <div class="product-price-container">
+              <span class="product-price">R$10,00</span>m²
+              <button type="button" class="button-hover-background">Adicionar ao carrinho</button>
+            </div>
+          </div>
+
+         
+          <div id='listaRegistros'>
+
+           
+    
+        </div>
+
+        
+
+
+      </section>
+
+      <div style='display: flex;'>
+        <input style='flex:1' placeholder="PESQUISAR" autofocus id='inputPesquisa' />
+        
+    </div>
+
+      <section class="container normal-section">
+        <h2 class="section-title">Carrinho</h2>
+
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th class="table-head-item first-col">Item</th>
+              <th class="table-head-item second-col">Preço</th>
+              <th class="table-head-item third-col">Quantidade</th>
+            </tr>
+          </thead>
+
+          <tbody>
+           
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="3" class="cart-total-container">
+                <strong>Total</strong>
+                <span>R$0,00</span>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <button type="button" class="purchase-button">Finalizar Compra</button>
+      </section>
+    </main>
+
+   
+  </body>
+</html>

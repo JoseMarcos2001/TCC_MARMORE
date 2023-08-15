@@ -19,6 +19,11 @@ document.getElementById("funcionarioForm").addEventListener("submit", submitForm
 function submitForm(e) {
   e.preventDefault();
   
+  var numID = getElementVal("numID");
+  if(!numID){ 
+    alert("insira um nome");
+  }else
+
   var name = getElementVal("name");
   if(!name){ 
     alert("insira um nome");
@@ -39,7 +44,7 @@ function submitForm(e) {
     alert("insira uma senha");
   }else
 
-  saveMessages(name,phone, emailid, passwordid);
+  saveMessages(numID,name,phone, emailid, passwordid);
 
   //   enable alert
   
@@ -51,10 +56,12 @@ function submitForm(e) {
 
 
 
-const saveMessages = (name,phone, emailid, passwordid) => {
-  var newFuncionarioForm = funcionarioFormDB.push();
-
-  newFuncionarioForm.set({
+const saveMessages = (numID,name,phone, emailid, passwordid) => {
+  firebase
+    .database()
+    .ref("funcionarioForm/" + numID)
+    .set({
+    numID: numID,
     name: name,
     phone: phone,
     emailid: emailid,
@@ -65,6 +72,67 @@ const saveMessages = (name,phone, emailid, passwordid) => {
 const getElementVal = (id) => {
   return document.getElementById(id).value;
 };
+
+var numV, nameV, phoneV;
+
+function readFom() {
+  numV = document.getElementById("numID").value;
+  nameV = document.getElementById("name").value;
+  phoneV = document.getElementById("phone").value;
+  console.log(numV, nameV, phoneV);
+}
+
+document.getElementById("read").onclick = function () {
+  readFom();
+
+  firebase
+    .database()
+    .ref("funcionarioForm/" + numV)
+    .on("value", function (snap) {
+      document.getElementById("numID").value = snap.val().numID;
+      document.getElementById("name").value = snap.val().name;
+      document.getElementById("phone").value = snap.val().phone;
+    });
+};
+
+
+document.getElementById("update").onclick = function () {
+  readFom();
+
+  firebase
+    .database()
+    .ref("funcionarioForm/" + numV)
+    .update({
+      //   rollNo: rollV,
+      name: nameV,
+      phone: phoneV,
+    });
+  alert("Data Update");
+  document.getElementById("numID").value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("phone").value = "";
+};
+
+
+document.getElementById("delete").onclick = function () {
+  readFom();
+
+  firebase
+    .database()
+    .ref("funcionarioForm/" + numV)
+    .remove();
+  alert("Data Deleted");
+  document.getElementById("numID").value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("phone").value = "";
+
+  FirebaseAuth.getInstance().deleteUser(uid);
+  System.out.println("Successfully deleted user.");
+
+};
+
+
+
 
 function crud(){
   location.href = "./index_crud.html";

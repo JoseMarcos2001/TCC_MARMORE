@@ -1,43 +1,23 @@
-var rollV, nameV, genderV, addressV;
+var numV, nameV, phoneV;
 
 function readFom() {
-  rollV = document.getElementById("roll").value;
+  numV = document.getElementById("numID").value;
   nameV = document.getElementById("name").value;
-  genderV = document.getElementById("gender").value;
-  addressV = document.getElementById("address").value;
-  console.log(rollV, nameV, addressV, genderV);
+  phoneV = document.getElementById("phone").value;
+  console.log(numV, nameV, phoneV);
 }
 
-document.getElementById("insert").onclick = function () {
-  readFom();
-
-  firebase
-    .database()
-    .ref("funcionario/" + rollV)
-    .set({
-      rollNo: rollV,
-      name: nameV,
-      gender: genderV,
-      address: addressV,
-    });
-  alert("Data Inserted");
-  document.getElementById("roll").value = "";
-  document.getElementById("name").value = "";
-  document.getElementById("gender").value = "";
-  document.getElementById("address").value = "";
-};
 
 document.getElementById("read").onclick = function () {
   readFom();
 
   firebase
     .database()
-    .ref("funcionario/" + rollV)
+    .ref("funcionarioForm/" + numV)
     .on("value", function (snap) {
-      document.getElementById("roll").value = snap.val().rollNo;
+      document.getElementById("numID").value = snap.val().rollNo;
       document.getElementById("name").value = snap.val().name;
-      document.getElementById("gender").value = snap.val().gender;
-      document.getElementById("address").value = snap.val().address;
+      document.getElementById("phone").value = snap.val().gender;
     });
 };
 
@@ -46,29 +26,26 @@ document.getElementById("update").onclick = function () {
 
   firebase
     .database()
-    .ref("funcionario/" + rollV)
+    .ref("funcionarioForm/" + numV)
     .update({
       //   rollNo: rollV,
       name: nameV,
-      gender: genderV,
-      address: addressV,
+      gender: phoneV,
     });
   alert("Data Update");
   document.getElementById("roll").value = "";
   document.getElementById("name").value = "";
   document.getElementById("gender").value = "";
-  document.getElementById("address").value = "";
 };
 document.getElementById("delete").onclick = function () {
   readFom();
 
   firebase
     .database()
-    .ref("funcionario/" + rollV)
+    .ref("funcionarioForm/" + numV)
     .remove();
   alert("Data Deleted");
   document.getElementById("roll").value = "";
   document.getElementById("name").value = "";
   document.getElementById("gender").value = "";
-  document.getElementById("address").value = "";
 };

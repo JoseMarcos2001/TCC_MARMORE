@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
   
+  
   <title>CADASTRO FUNCIONARIO</title>
 </head>
 <body>
@@ -15,6 +16,9 @@
   <div class="container">
     <form action="" id="funcionarioForm">
         
+        <div class="inputBox">
+            <input type="number" id="numID" placeholder="ID" />
+        </div>
 
         <div class="inputBox">
             <input type="text" id="name" placeholder="Nome" />
@@ -33,10 +37,21 @@
       </div>
 
         <div class="inputBox">
-            <button type="submit" id="register">Registrar Funcionario</button>
+            <button type="submit" id="register">Registrar</button>
         </div>
+
+        
         
     </form>
+</div>
+<div class="inputBox">
+  <input type="text" id="UID" placeholder="UID" />
+</div>
+<div class="buttons">
+  <button id="read">Buscar</button>
+  <button id="update">Atualizar</button>
+  <button id="delete">Deletar</button>
+  <button id="deleteUID">Deletar UID</button>
 </div>
 
 
@@ -44,6 +59,7 @@
 
 
 <script type="module">
+  
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
@@ -114,8 +130,18 @@ return error.message;
 		  });  		  
 	  });
 
+document.getElementById("deleteUID").onclick = function () {
+    var uid =  getElementVal("UID");
+    console.log(uid);
+FirebaseAuth.getInstance().deleteUser(uid);
+System.out.println("Successfully deleted user.");
+
+};
+
 </script>
+
 <script src="./scriptfuncionario.js"></script>
+
 
 </body>
 </html>

@@ -1,51 +1,34 @@
-var numV, nameV, phoneV;
-
-function readFom() {
-  numV = document.getElementById("numID").value;
-  nameV = document.getElementById("name").value;
-  phoneV = document.getElementById("phone").value;
-  console.log(numV, nameV, phoneV);
+var firebaseConfig = {
+  apiKey: "AIzaSyCV2Eu8UdJX2_9FYVLFTV4aF_hLQJ4Edj8",
+  authDomain: "marmore-9e301.firebaseapp.com",
+  databaseURL: "https://marmore-9e301-default-rtdb.firebaseio.com",
+  projectId: "marmore-9e301",
+  storageBucket: "marmore-9e301.appspot.com",
+  messagingSenderId: "213981622362",
+  appId: "1:213981622362:web:2638b873284157c055e863"
 }
 
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database()
+const dataContainer = document.querySelector('tbody')
 
-document.getElementById("read").onclick = function () {
-  readFom();
+var fetchedData = database.ref('funcionarioForm/')
+fetchedData.on('value', (snapshot) => {
+    var data = snapshot.val()
+    var htmlData = ''
+    for (var key in data){
+        var value = data[key]
+        htmlData += `
+        <tr>
+                <td>${value.numID}</td>
+                <td>${value.name}</td>
+                <td>${value.phone}</td>
+                <td>${value.emailid}</td>
+                
+                
+            </tr>
 
-  firebase
-    .database()
-    .ref("funcionarioForm/" + numV)
-    .on("value", function (snap) {
-      document.getElementById("numID").value = snap.val().rollNo;
-      document.getElementById("name").value = snap.val().name;
-      document.getElementById("phone").value = snap.val().gender;
-    });
-};
-
-document.getElementById("update").onclick = function () {
-  readFom();
-
-  firebase
-    .database()
-    .ref("funcionarioForm/" + numV)
-    .update({
-      //   rollNo: rollV,
-      name: nameV,
-      gender: phoneV,
-    });
-  alert("Data Update");
-  document.getElementById("roll").value = "";
-  document.getElementById("name").value = "";
-  document.getElementById("gender").value = "";
-};
-document.getElementById("delete").onclick = function () {
-  readFom();
-
-  firebase
-    .database()
-    .ref("funcionarioForm/" + numV)
-    .remove();
-  alert("Data Deleted");
-  document.getElementById("roll").value = "";
-  document.getElementById("name").value = "";
-  document.getElementById("gender").value = "";
-};
+        `;
+    }
+    dataContainer.innerHTML = htmlData
+})

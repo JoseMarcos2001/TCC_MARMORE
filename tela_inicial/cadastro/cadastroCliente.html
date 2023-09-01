@@ -5,46 +5,56 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+  <link rel="stylesheet" href="style_cliente.css">
   <title>Cadastro de Cliente</title>
  
 </head>
 <body>
-  <h1>Cadastro de Cliente</h1>
+  <div  class="container">
+    <form action="" id="clienteForm">
+      <h1>CADASTRO CLIENTES</h1>
+        <div class="inputBox"><br>
+            <input type="tel" id="numID" placeholder="CPF" pattern="[0-9]{9}-[0-9]{2}" required />
+        </div>
 
-  <div class="container">
-        <form action="" id="clienteForm">
-        
-
-        <div class="inputBox">
+        <div id="teste"class="inputBox"><br>
             <input type="text" id="name" placeholder="Nome" />
         </div>
 
-        <div class="inputBox">
+        <div class="inputBox"><br>
+          <input type="tel" id="phone" placeholder="Telefone" pattern="[0-9]{5}-[0-9]{4}" required />
+      </div>
+
+        <div class="inputBox"><br>
             <input type="email" id="emailid" placeholder="Email" />
         </div>
 
-        <div class="inputBox">
-            <input type="tel" id="cpf" placeholder="CPF" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}.[0-9]{2}" />
-        </div>
+        <div class="inputBox"><br>
+          <input type="text" id="enderecoid" placeholder="Endereço" />
+      </div>
 
         <div class="inputBox">
-          <input type="tel" id="phone" placeholder="Telefone do cliente" pattern="[0-9]{5}-[0-9]{4}" required />
+          <br>
+            <button type="submit" id="register">✅Registrar</button>
         </div>
 
-        <div class="inputBox">
-        <input type="text" id="endereco" placeholder="Endereço" />
+        <div class="buttons">
+          <br>
+          <button id="read">🔎Buscar</button>
+          <button id="update">🔄Atualizar</button>
+          <button id="delete">🚯Deletar</button>
         </div>
+        <div>
+          <button type="button" onclick="crud()">👤CLIENTES CADASTRADOS</button>
+          </div>
 
-
-        <div class="inputBox">
-            <button type="submit" id="registrar">Registrar Cliente</button>
-        </div>
+          <footer>
+            <button type="button" onclick="inicial()">⬅VOLTAR</button>
+          </footer>
     </form>
-    </div>
-    <div>
-      <button type="button" id="voltar" onclick="voltar()">voltar</button>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    <script src="./scriptCliente.js"></script>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<script src="scriptCliente.js"></script> 
+
 </body>
 </html>

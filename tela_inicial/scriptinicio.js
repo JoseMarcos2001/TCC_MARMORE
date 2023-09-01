@@ -14,3 +14,7 @@ function rascunho(){
     location.href = "orcamento/index.html";
   }
 
+  function senha(){
+    location.href = "senha/index.html";
+  }
+

@@ -19,9 +19,9 @@ document.getElementById("funcionarioForm").addEventListener("submit", submitForm
 function submitForm(e) {
   e.preventDefault();
   
-  var numID = getElementVal("numID");
-  if(!numID){ 
-    alert("insira um nome");
+  var CPF = getElementVal("numID");
+  if(!CPF){ 
+    alert("insira o CPF");
   }else
 
   var name = getElementVal("name");
@@ -44,7 +44,7 @@ function submitForm(e) {
     alert("insira uma senha");
   }else
 
-  saveMessages(numID,name,phone, emailid, passwordid);
+  saveMessages(CPF,name,phone, emailid, passwordid);
 
   //   enable alert
   
@@ -56,12 +56,12 @@ function submitForm(e) {
 
 
 
-const saveMessages = (numID,name,phone, emailid, passwordid) => {
+const saveMessages = (CPF,name,phone, emailid, passwordid) => {
   firebase
     .database()
-    .ref("funcionarioForm/" + numID)
+    .ref("funcionarioForm/" + CPF)
     .set({
-    numID: numID,
+      CPF: CPF,
     name: name,
     phone: phone,
     emailid: emailid,
@@ -89,11 +89,15 @@ document.getElementById("read").onclick = function () {
     .database()
     .ref("funcionarioForm/" + numV)
     .on("value", function (snap) {
-      document.getElementById("numID").value = snap.val().numID;
+      document.getElementById("numID").value = snap.val().CPF;
       document.getElementById("name").value = snap.val().name;
       document.getElementById("phone").value = snap.val().phone;
     });
+    
 };
+function getASecureRandomPassword() {
+  return getElementVal("passwordid");
+}
 
 
 document.getElementById("update").onclick = function () {
@@ -106,11 +110,25 @@ document.getElementById("update").onclick = function () {
       //   rollNo: rollV,
       name: nameV,
       phone: phoneV,
+      passwordid:passwordid,
     });
-  alert("Data Update");
+
+  alert("Cadastro atualizado");
   document.getElementById("numID").value = "";
   document.getElementById("name").value = "";
   document.getElementById("phone").value = "";
+
+  const user = firebase.auth().currentUser;
+  const newPassword = getASecureRandomPassword();
+  user.updatePassword(newPassword).then(() => {
+    console.log("senha atualizou");
+}).catch((error) => {
+const errorMessage = error.message;
+  // ..
+  console.log(errorMessage);
+  //alert(error);
+});
+
 };
 
 
@@ -121,17 +139,27 @@ document.getElementById("delete").onclick = function () {
     .database()
     .ref("funcionarioForm/" + numV)
     .remove();
-  alert("Data Deleted");
+  alert("usuario removido com sucesso");
   document.getElementById("numID").value = "";
   document.getElementById("name").value = "";
   document.getElementById("phone").value = "";
 
-  FirebaseAuth.getInstance().deleteUser(uid);
-  System.out.println("Successfully deleted user.");
+  const user = firebase.auth().currentUser;
+  user.delete().then(()=>{
+  console.log("usuario removido com sucesso");
+  })
+  .catch((error) => {
+    const errorMessage = error.message;
+    // ..
+    console.log(errorMessage);
+    //alert(error);
+  }); 
 
 };
 
-
+function inicial(){
+  location.href = "../tela_inicial.html";
+}
 
 
 function crud(){

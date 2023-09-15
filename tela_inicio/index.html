@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Inicio - Marmoraria</title>
+        <script defer src="./scriptinicio.js"></script>
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-primary text-white">WEB MARMORE</div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="inicio()">Inicio</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_funcionario()">Funcionarios</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_cliente()">Clientes</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_produto()">Produtos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="orcamento()">Orçamentos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="rascunho()">Rascunho</a>
+	                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="senha()">Alterar senha</a>
+                  <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="sobre()">Miscelania</a> -->
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">Menu</button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    Sair
+                                  </button>
+                                  
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Logout</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          Deseja mesmo sair?
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                                          <button type="button" class="btn btn-primary" onclick="logout()">Sim</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                    
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Conta">
+                                        
+                                    
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <h1 class="mt-4">Bem-vindo ao WebMarmore!</h1>
+                    <p>
+			Um sistema de orçamento de produção de produtos de mármores é essencial para empresas do setor de construção e decoração que buscam otimizar seus processos e tomar decisões financeiras mais precisas. Esse sistema, visa calcular com eficiência os custos envolvidos na produção de peças de mármore, desde a produção até a entrega do produto final ao cliente.
+		            </p>
+                    <p>
+                        Em resumo, a criação de um sistema de orçamento de produção de mármores é uma estratégia essencial para melhorar a gestão financeira, a eficiência operacional e a competitividade da empresa no setor. Ele proporciona uma base sólida para o crescimento sustentável e o sucesso a longo prazo no mercado de mármores.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

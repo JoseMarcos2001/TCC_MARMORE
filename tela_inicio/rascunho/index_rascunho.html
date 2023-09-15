@@ -1,0 +1,60 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Rascunho 🎨🖌</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	</head>
+
+	<script src="script.js"></script>
+
+	<body>
+		<div id="sidebar">
+			<!-- Color picker for drawing pecil -->
+			<div class="colorButtons">
+				<h3>Cor</h3>
+				<input type="color" id="colorpicker" class="colorpicker" value="black">
+			</div>
+
+			<!-- tools eraser and clear  -->
+			<div class="toolsbuttons">
+				<h4>Ferramentas</h4>
+				<button id="eraser" class="btn btn-default">
+					<span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+				</button> 
+				<button id="clear" class="btn btn-danger">
+					<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+				</button> 
+			</div>
+			<!-- change thickness on drawing pencil -->
+			<div class="buttonSize">
+				<h4>Tamanho (<span id="showSize">5</span>)</h4>
+
+				<input type="range" min="1" max="50" value="5"  step="1" id="controlSize">
+			</div>
+		
+
+			<!-- saving the image -->
+
+			<div class="Storage">
+				<h3>Historico</h3>
+				<input type="button" value="save" class="btn btn-danger" id="save">
+				<input type="button" value="load" class="btn btn-warning" id="load">
+				<input type="button" value="clear" class="btn btn-success" id="clearCache">
+			</div>
+
+			<!-- Download the drawing -->
+
+			<div class="extra">
+				<h3>Extra</h3>
+				<a id="saveToImage" class="btn btn-warning">Baixar</a>
+			</div>
+
+
+		</div>
+		
+	 </body>
+
+</html>

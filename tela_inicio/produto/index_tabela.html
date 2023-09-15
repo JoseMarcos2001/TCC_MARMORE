@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Cadastros - Marmoraria</title>
+        <script defer src="../js/scripts.js"></script>
+        <script defer src="./scriptinicio.js"></script>
+        
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-primary text-white">WEB MARMORE</div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="inicio()">Inicio</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_funcionario()">Funcionarios</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_cliente()">Clientes</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_produto()">Produtos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="orcamento()">Orçamentos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="rascunho()">Rascunho</a>
+	                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="senha()">Alterar senha</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">Menu</button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                
+                                <li class="nav-item dropdown">
+                                    
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Conta">
+                                        
+                                    
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Page content-->
+                <div class="container">
+                    <h1 class="mt-4">Produtos Cadastrados</h1>
+                    
+                    
+    
+                    <div class="table-responsive">
+                        <table class="table">
+                        <thead>
+                            <tr>
+                              <th scope="col">Tipo e Cor do Produto</th>
+                                <th scope="col">M² da Pedra</th>
+                                <th scope="col">Valor Bruto</th>
+                                <th scope="col">Valor do Imposto</th>
+                                <th scope="col">Sub Total</th>
+                                <th scope="col">Total Final</th>
+                                
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+              
+                        </tbody>
+                    </table>
+                    </div>
+                    </div>
+                  
+                      <script src="https://www.gstatic.com/firebasejs/10.2.0/firebase-app-compat.js"></script>
+                      <script src="https://www.gstatic.com/firebasejs/10.2.0/firebase-database-compat.js"></script>
+                  
+                  
+                      <script src="./scriptabela.js"></script>
+                      
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="./scriptabela.js"></script>
+    </body>
+</html>

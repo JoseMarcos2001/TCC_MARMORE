@@ -27,3 +27,4 @@ const cpfMask = (value) => {
 
   return formattedValue;
 }
+

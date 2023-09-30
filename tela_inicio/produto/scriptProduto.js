@@ -40,12 +40,13 @@ const firebaseConfig = {
       alert("Insira o Valor do Imposto");
     }else
   
- 
-    var result = Number(valbruto)+Number(valimp);
-    console.log(result);
     
-    saveMessages(tipo,metro,valbruto, valimp);
-  
+    var result = Number(valbruto)+Number(valimp);
+    //console.log(result);
+    var subtotal = result;
+    var total = Number(subtotal)*3;
+    saveMessages(tipo,metro,valbruto, valimp,result,subtotal,total);
+ 
     //   enable alert
     
   
@@ -56,10 +57,14 @@ const firebaseConfig = {
   }
 
  
+  function soma(){
+    console.log(result);
+
+  }
   
   
   
-  const saveMessages = (tipo,metro,valbruto, valimp) => {
+  const saveMessages = (tipo,metro,valbruto, valimp,result,subtotal,total) => {
     
     firebase
       .database()
@@ -69,7 +74,9 @@ const firebaseConfig = {
       metro: metro,
       valbruto: valbruto,
       valimp: valimp,
-      
+      result:result,
+      subtotal:subtotal,
+      total:total,
     });
   };
   
@@ -77,20 +84,21 @@ const firebaseConfig = {
     return document.getElementById(id).value;
   };
   
-  var tipoV, metroV, valbrutoV,valimpV;
+  var tipoV, metroV, valbrutoV,valimpV,subtotalV,totalV;
   
   function readFom() {
      tipoV = document.getElementById("tipo").value;
     metroV = document.getElementById("metro").value;
     valbrutoV = document.getElementById("valbruto").value;
     valimpV = document.getElementById("valimp").value;
+  subtotalV = document.getElementById("subtotal").value;
+  totalV = document.getElementById("total").value;
     
-    console.log(tipoV, metroV, valbrutoV,valimpV);
+    console.log(tipoV, metroV, valbrutoV,valimpV,subtotalV);
   }
   
   document.getElementById("read").onclick = function () {
     readFom();
-  
     firebase
       .database()
       .ref("produtoForm/" + tipoV)
@@ -99,7 +107,8 @@ const firebaseConfig = {
         document.getElementById("metro").value = snap.val().metro;
         document.getElementById("valbruto").value = snap.val().valbruto;
         document.getElementById("valimp").value = snap.val().valimp;
-        
+        document.getElementById("subtotal").value = snap.val().subtotal;
+        document.getElementById("total").value = snap.val().total;
       });
   };
   
@@ -114,13 +123,17 @@ const firebaseConfig = {
           tipo: tipoV,
         metro: metroV,
         valbruto: valbrutoV,
-       valimp: valimpV,
+        valimp: valimpV,
+        subtotal:subtotalV,
+        total:totalV,
       });
     alert("Atualizado com sucesso!");
     document.getElementById("tipo").value = "";
     document.getElementById("metro").value = "";
     document.getElementById("valbruto").value = "";
     document.getElementById("valimp").value = "";
+    document.getElementById("subtotal").value = "";
+    document.getElementById("total").value = "";
     
     window.location.reload();
   };
@@ -138,6 +151,8 @@ const firebaseConfig = {
     document.getElementById("metro").value = "";
     document.getElementById("valbruto").value = "";
     document.getElementById("valimp").value = "";
+    document.getElementById("subtotal").value = "";
+    document.getElementById("total").value = "";
     
   
     window.location.reload();

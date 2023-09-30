@@ -1,0 +1,9 @@
+table th,table td{
+  font-size: small;
+  
+  padding: 1px 12px;
+  padding-left: 1px;
+  border-bottom: 1px solid #cacaca;
+  outline: none;
+}
+

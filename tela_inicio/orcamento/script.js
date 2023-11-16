@@ -1,164 +1,134 @@
-if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready)
-  } else {
-    ready()
+const firebaseConfig = {
+  apiKey: "AIzaSyCV2Eu8UdJX2_9FYVLFTV4aF_hLQJ4Edj8",
+  authDomain: "marmore-9e301.firebaseapp.com",
+  databaseURL: "https://marmore-9e301-default-rtdb.firebaseio.com",
+  projectId: "marmore-9e301",
+  storageBucket: "marmore-9e301.appspot.com",
+  messagingSenderId: "213981622362",
+  appId: "1:213981622362:web:2638b873284157c055e863"
+};
+
+// initialize firebase
+firebase.initializeApp(firebaseConfig);
+
+// reference your database
+var clienteFormDB = firebase.database().ref("clienteForm");
+
+
+document.getElementById("orcamentoForm").addEventListener("submit", submitForm);
+geraID()
+async function geraID() {
+  try {
+    console.log("entrei")
+    let result = await count();
+    const newResult = await atualiza(++result);
+    document.getElementById("pedido").value=result;
+  } catch (error) {
   }
+}
+
+function count(){
+ return  firebase
+  .database()
+  .ref("indices/orcamento")
+  .once("value").then((snapshot) => {
+    return snapshot.val();
+   });
+}
+
+function atualiza(valor){
+  return firebase
+  .database()
+  .ref("indices")
+  .set({orcamento:valor});
+}
+
+function submitForm(e) {
+  e.preventDefault();
+            
+  var nome = getElementVal("name");
+  var CPF = getElementVal("numID");
+  var telefone = getElementVal("phone");
+  var email = getElementVal("emailid");
+  var endereco = getElementVal("enderecoid");
+  var numPedido = getElementVal("pedido");
+  var name1 = getElementVal("name1");
+  var qtd1 = getElementVal("qtd1");
+  var larg1 = getElementVal("larg1");
+  var comp1 = getElementVal("comp1");
+  var status = "aberto";
+ 
+
+  saveMessages(CPF,nome,telefone,email,endereco,numPedido,name1,qtd1,larg1,comp1,status);
   
-  var totalAmount = "0,00"
+
+  alert("foi!");
+document.getElementById("orcamentoForm").reset();
+location.href = "inicio.html"; 
+}
+
+function calculo(){
+  const largura = parseFloat($('#larg1').val());
+  const comprimento = parseFloat($('#comp1').val());
+  const quantidade = parseFloat($('#qtd1').val());
+  const area = largura * comprimento;
+  console.log(area);
+
+  const valorMetroQuadrado = 10;
+  const valorTotal = (area / valorMetroQuadrado)*quantidade;
+  console.log(valorTotal);
+
   
-  function ready() {
-    // Botão remover produto
-    const removeCartProductButtons = document.getElementsByClassName("remove-product-button")
-    for (var i = 0; i < removeCartProductButtons.length; i++) {
-      removeCartProductButtons[i].addEventListener("click", removeProduct)
-    }
-  
-    // Mudança valor dos inputs
-    const quantityInputs = document.getElementsByClassName("product-qtd-input")
-    for (var i = 0; i < quantityInputs.length; i++) {
-      quantityInputs[i].addEventListener("change", checkIfInputIsNull)
-    }
-  
-    // Botão add produto ao carrinho
-    const addToCartButtons = document.getElementsByClassName("button-hover-background")
-    for (var i = 0; i < addToCartButtons.length; i++) {
-      addToCartButtons[i].addEventListener("click", addProductToCart)
-    }
-  
-    // Botão comprar
-    const purchaseButton = document.getElementsByClassName("purchase-button")[0]
-    purchaseButton.addEventListener("click", makePurchase)
-  }
-  
-  function removeProduct(event) {
-    event.target.parentElement.parentElement.remove()
-    updateTotal()
-  }
-  
-  function checkIfInputIsNull(event) {
-    if (event.target.value === "0") {
-      event.target.parentElement.parentElement.remove()
-    }
-  
-    updateTotal()
-  }
-  
-  function addProductToCart(event) {
-    const button = event.target
-    const productInfos = button.parentElement.parentElement
-    const productImage = productInfos.getElementsByClassName("product-image")[0].src
-    const productName = productInfos.getElementsByClassName("product-title")[0].innerText
-    const productPrice = productInfos.getElementsByClassName("product-price")[0].innerText
-  
-    const productsCartNames = document.getElementsByClassName("cart-product-title")
-    for (var i = 0; i < productsCartNames.length; i++) {
-      if (productsCartNames[i].innerText === productName) {
-        productsCartNames[i].parentElement.parentElement.getElementsByClassName("product-qtd-input")[0].value++
-        updateTotal()
-        return
-      }
-    }
-  
-    let newCartProduct = document.createElement("tr")
-    newCartProduct.classList.add("cart-product")
-  
-    newCartProduct.innerHTML =
-      `
-        <td class="product-identification">
-          <img src="${productImage}" alt="${productName}" class="cart-product-image">
-          <strong class="cart-product-title">${productName}</strong>
-        </td>
-        <td>
-          <span class="cart-product-price">${productPrice}</span>
-        </td>
-        <td>
-          <input type="number" value="1" min="0" class="product-qtd-input">
-          <button type="button" class="remove-product-button">Remover</button>
-        </td>
-      `
+}
+
+const saveMessages = (CPF,nome,telefone,email,endereco,numPedido,name1,qtd1,larg1,comp1,status) => {
+  firebase
+    .database()
+    .ref("orcamentoForm/" + numPedido)
+    .set({
+      nome:nome,
+      CPF:CPF,
+      telefone:telefone,
+      email:email,
+      endereco:endereco,
+      numPedido:numPedido,
+      name1: name1,
+      qtd1: qtd1,
+      larg1: larg1,
+      comp1: comp1,
+      status:status,
     
-    const tableBody = document.querySelector(".cart-table tbody")
-    tableBody.append(newCartProduct)
-    updateTotal()
-  
-    newCartProduct.getElementsByClassName("remove-product-button")[0].addEventListener("click", removeProduct)
-    newCartProduct.getElementsByClassName("product-qtd-input")[0].addEventListener("change", checkIfInputIsNull)
-  }
-  
-  function makePurchase() {
-    if (totalAmount === "0,00") {
-      alert("Seu carrinho está vazio!")
-    } else {   
-      alert(
-        `
-          Obrigado pela sua compra!
-          Valor do pedido: R$${totalAmount}\n
-          Volte sempre :)
-        `
-      )
-  
-      document.querySelector(".cart-table tbody").innerHTML = ""
-      updateTotal()
-    }
-  }
-  
-  // Atualizar o valor total do carrinho
-  function updateTotal() {
-    const cartProducts = document.getElementsByClassName("cart-product")
-    totalAmount = 0
-  
-    for (var i = 0; i < cartProducts.length; i++) {
-      const productPrice = cartProducts[i].getElementsByClassName("cart-product-price")[0].innerText.replace("R$", "").replace(",", ".")
-      const productQuantity = cartProducts[i].getElementsByClassName("product-qtd-input")[0].value
-  
-      totalAmount += productPrice * productQuantity
-    }
-    
-    totalAmount = totalAmount.toFixed(2)
-    totalAmount = totalAmount.replace(".", ",")
-    document.querySelector(".cart-total-container span").innerText = "R$" + totalAmount
-  }
+  });
+};
 
-  function lerBD(){
-    const data = localStorage.getItem(KEY_BD)
-    if(data){
-        listaRegistros = JSON.parse(data)
-    }
-    desenhar()
+
+
+const getElementVal = (id) => {
+  return document.getElementById(id).value;
+};
+
+var clienteV,numV, nameV, phoneV,emailV,enderecoV;
+
+function readFom() {
+  numV = document.getElementById("numID").value.match(/\d/g).join("");//LIMPA MASCARA;;;
+  nameV = document.getElementById("name").value;
+  phoneV = document.getElementById("phone").value;
+  emailV = document.getElementById("emailid").value;
+  enderecoV = document.getElementById("enderecoid").value;
+  console.log(numV, nameV, phoneV,emailV,enderecoV);
 }
 
+document.getElementById("read").onclick = function () {
+  readFom();
 
-function pesquisar(value){
-    FILTRO = value;
-    desenhar()
-}
-
-
-function desenhar(){
-    const tbody = document.getElementById('listaRegistrosBody')
-    if(tbody){
-        var data = listaRegistros.usuarios;
-        if(FILTRO.trim()){
-            const expReg = eval(`/${FILTRO.trim().replace(/[^\d\w]+/g,'.*')}/i`)
-            data = data.filter( usuario => {
-                return expReg.test( usuario.nome ) || expReg.test( usuario.fone )
-            } )
-        }
-        data = data
-            .sort( (a, b) => {
-                return a.nome < b.nome ? -1 : 1
-            })
-            .map( usuario => {
-                return `<tr>
-                        <td>${usuario.id}</td>
-                        <td>${usuario.nome}</td>
-                        <td>${usuario.fone}</td>
-                        <td>
-                            <button onclick='vizualizar("cadastro",false,${usuario.id})'>Editar</button>
-                            <button class='vermelho' onclick='perguntarSeDeleta(${usuario.id})'>Deletar</button>
-                        </td>
-                    </tr>`
-            } )
-        tbody.innerHTML = data.join('')
-    }
-}
+  firebase
+    .database()
+    .ref("clienteForm/" + numV)
+    .on("value", function (snap) {
+      document.getElementById("numID").value = snap.val().CPF;
+      document.getElementById("name").value = snap.val().name;
+      document.getElementById("phone").value = snap.val().phone;
+      document.getElementById("emailid").value = snap.val().emailid;
+      document.getElementById("enderecoid").value = snap.val().enderecoid;
+    });
+};

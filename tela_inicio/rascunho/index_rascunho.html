@@ -1,60 +1,94 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Cadastros - Marmoraria</title>
+        <script defer src="../js/scripts.js"></script>
+        <script defer src="./scriptinicio.js"></script>
+        
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-primary text-white">WEB MARMORE</div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="inicio()">Inicio</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_funcionario()">Funcionarios</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_cliente()">Clientes</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_produto()">Produtos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="orcamento()">Orçamentos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="rascunho()">Rascunho</a>
+	                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="senha()">Alterar senha</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">Menu</button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                
+                                <li class="nav-item dropdown">
+                                    
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Conta">
+                                        
+                                    
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Page content-->
+                <div class="container">
+					<h1 class="mt-4 text-center">Rascunho</h1>
+					<div class="row mt-4">
+						<div class="col-md-4 col-sm-12 left-panel">
+							<div class="form-group">
+								<label for="colorPicker">Cor do Traçado:</label>
+								<input type="color" id="colorPicker" class="form-control" value="#000000">
+							</div>
+							<div class="form-group">
+								<label for="lineWidthRange">Tamanho do Traçado:</label>
+								<input type="range" id="lineWidthRange" class="form-control" min="1" max="10" value="5">
+							</div><br>
+							<button id="clearButton" class="btn btn-danger btn-block">Limpar</button>
+							<button id="saveButton" class="btn btn-primary btn-block">Salvar</button>
+							<input type="file" id="fileInput" class="mt-3"> <br>
+							<!-- <button id="loadButton" class="btn btn-success btn-block mt-3">Carregar Foto</button> -->
+						</div>
+						<div class="col-md-8 col-sm-12">
+							<canvas id="canvas" width="800" height="600" class="border"></canvas>
+						</div>
+					</div>
+				</div>
+			
+				<script src="script.js"></script>
+                      <script src="https://www.gstatic.com/firebasejs/10.2.0/firebase-app-compat.js"></script>
+                      <script src="https://www.gstatic.com/firebasejs/10.2.0/firebase-database-compat.js"></script>
+                  
+                  
+                      <script src="./myscript.js"></script>
+                      
 
-	<head>
-		<meta charset="utf-8">
-		<title>Rascunho 🎨🖌</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	</head>
-
-	<script src="script.js"></script>
-
-	<body>
-		<div id="sidebar">
-			<!-- Color picker for drawing pecil -->
-			<div class="colorButtons">
-				<h3>Cor</h3>
-				<input type="color" id="colorpicker" class="colorpicker" value="black">
-			</div>
-
-			<!-- tools eraser and clear  -->
-			<div class="toolsbuttons">
-				<h4>Ferramentas</h4>
-				<button id="eraser" class="btn btn-default">
-					<span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
-				</button> 
-				<button id="clear" class="btn btn-danger">
-					<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-				</button> 
-			</div>
-			<!-- change thickness on drawing pencil -->
-			<div class="buttonSize">
-				<h4>Tamanho (<span id="showSize">5</span>)</h4>
-
-				<input type="range" min="1" max="50" value="5"  step="1" id="controlSize">
-			</div>
-		
-
-			<!-- saving the image -->
-
-			<div class="Storage">
-				<h3>Historico</h3>
-				<input type="button" value="save" class="btn btn-danger" id="save">
-				<input type="button" value="load" class="btn btn-warning" id="load">
-				<input type="button" value="clear" class="btn btn-success" id="clearCache">
-			</div>
-
-			<!-- Download the drawing -->
-
-			<div class="extra">
-				<h3>Extra</h3>
-				<a id="saveToImage" class="btn btn-warning">Baixar</a>
-			</div>
-
-
-		</div>
-		
-	 </body>
-
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
 </html>

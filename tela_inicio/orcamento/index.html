@@ -1,84 +1,281 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="teste.css">
-    
-
-    <script src="script.js" async></script>
-
-    <title>Orçamento</title>
-  </head>
-  <body>
-
-
-    <main class="main-section">
-      
-
-      <section class="container normal-section">
-        <h2 class="section-title">Produtos</h2>
-
-        <div class="products-container">
-          <div class="movie-product">
-            <strong class="product-title">Soleira</strong>
-            <!-- <br> -->
-            <img src="images/produto1.webp" alt="Soleira" class="product-image">
-            <div class="product-price-container">
-              <span class="product-price">R$10,00</span>m²
-              <button type="button" class="button-hover-background">Adicionar ao carrinho</button>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+        <script src="../mascaras.js" ></script>
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Orçamentos - Gerar Orçamentos</title>
+        <script defer src="../js/scripts.js"></script>
+        <script defer src="scriptinicio.js"></script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-primary text-white">WEB MARMORE</div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="inicio()">Inicio</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_funcionario()">Funcionarios</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_cliente()">Clientes</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_produto()">Produtos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="orcamento()">Orçamentos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="rascunho()">Rascunho</a>
+	                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="senha()">Alterar senha</a>
+                </div>
             </div>
-          </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">Menu</button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                
+                                <li class="nav-item dropdown">
+                                        
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Conta">
+                                        
+                                    
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Page content-->
 
-         
-          <div id='listaRegistros'>
+                  <div class="container">
+                    <h1 class="mt-4">Gerar Orçamentos</h1>
+                    <h5 class="mt-4">Cliente</h5>
+                    <form action="" id="orcamentoForm">
+                    <form action="" id="clienteForm">
+                       
+                      <div id="teste"class="mb-3"><br>
+                        Nº PEDIDO
+                          <input class="form-control" type="text" id="pedido" disabled=""  />
+                      </div>
+                      
+                      <div class="mb-3">
+                        CPF
+                        <input class="form-control" type="tel" id="numID" placeholder="CPF" onkeyup="handleCPF(event)" maxlength="11"  />
+                    </div>
+            
+                    <div id="teste"class="mb-3">
+                      Nome
+                        <input class="form-control" type="text" id="name" placeholder="Nome" disabled="" />
+                    </div>
+            
+                    <div class="mb-3">
+                      Telefone
+                      <input class="form-control" type="tel" id="phone" placeholder="Telefone" onkeyup="handlePhone(event)" maxlength="11" required />
+                  </div>
+            
+                    <div class="mb-3">
+                      Email
+                        <input class="form-control" type="email" id="emailid" placeholder="Email" disabled="" />
+                    </div>
+            
+                    <div class="mb-3">
+                      Endereço
+                      <input class="form-control" type="text" id="enderecoid" placeholder="Endereço" disabled=""/>
+                  </div>
+                          
+                  
+                        <div class="buttons">
+                          <button id="read" class="btn btn-primary">🔎Buscar</button>
+                        </div>
 
-           
-    
-        </div>
 
-        
+            <h5 class="mt-4">Orçamento</h5><br>
+            <div class="container">
+            <div class="container text-left">
+            <div class="row align-items-start">
+    <div class="col">
+      DESCRIÇÃO PRODUTO
+      <div class="mb-3">
+          <input class="form-control" type="text" id="name1" />
+      </div>
 
-
-      </section>
-
-      <div style='display: flex;'>
-        <input style='flex:1' placeholder="PESQUISAR" autofocus id='inputPesquisa' />
-        
+      <div class="mb-3">
+        <input class="form-control" type="text" id="name2" />
     </div>
 
-      <section class="container normal-section">
-        <h2 class="section-title">Carrinho</h2>
+    <div class="mb-3">
+      <input class="form-control" type="text" id="name3" />
+  </div>
 
-        <table class="cart-table">
-          <thead>
-            <tr>
-              <th class="table-head-item first-col">Item</th>
-              <th class="table-head-item second-col">Preço</th>
-              <th class="table-head-item third-col">Quantidade</th>
-            </tr>
-          </thead>
+  <div class="mb-3">
+    <input class="form-control" type="text" id="name4" />
+</div>
 
-          <tbody>
-           
-          </tbody>
+<div class="mb-3">
+  <input class="form-control" type="text" id="name5" />
+</div>
 
-          <tfoot>
-            <tr>
-              <td colspan="3" class="cart-total-container">
-                <strong>Total</strong>
-                <span>R$0,00</span>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+<div class="mb-3">
+  <input class="form-control" type="text" id="name6" />
+</div>
 
-        <button type="button" class="purchase-button">Finalizar Compra</button>
-      </section>
-    </main>
+<div class="mb-3">
+  <input class="form-control" type="text" id="name7" />
+</div>
 
-   
-  </body>
+    </div>
+    <div class="col">
+      QUANTIDADE
+      <div class="mb-3">
+        <input class="form-control" type="number" id="qtd1" />
+    </div>
+
+    <div class="mb-3">
+      <input class="form-control" type="text" id="qtd2" />
+  </div>
+
+  <div class="mb-3">
+    <input class="form-control" type="text" id="qtd3" />
+</div>
+
+<div class="mb-3">
+  <input class="form-control" type="text" id="qtd4" />
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="qtd5" />
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="qtd6" />
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="name7" />
+</div>
+
+    </div>
+    <div class="col">
+      LARGURA
+      <div class="mb-3">
+        <input class="form-control" type="number" id="larg1" />
+    </div>
+
+    <div class="mb-3">
+      <input class="form-control" type="text" id="larg2" />
+  </div>
+
+  <div class="mb-3">
+    <input class="form-control" type="text" id="larg3" />
+</div>
+
+<div class="mb-3">
+  <input class="form-control" type="text" id="larg4" />
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="larg5" />
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="qtd6" />
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="name7" />
+</div>
+
+    </div>
+    <div class="col">
+      COMPRIMENTO
+      <div class="mb-3">
+        <input class="form-control" type="number" id="comp1" onfocusout="calculo()" />
+    </div>
+
+    <div class="mb-3">
+      <input class="form-control" type="text" id="comp2" />
+  </div>
+
+  <div class="mb-3">
+    <input class="form-control" type="text" id="comp3" />
+</div>
+
+<div class="mb-3">
+  <input class="form-control" type="text" id="comp4" />
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="comp5" />
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="comp6" />
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="comp7" />
+</div>
+
+    </div>
+    <div class="col">
+      TOTAL
+      <div class="mb-3">
+        <input class="form-control" type="number" id="total1" disabled=""/>
+    </div>
+
+    <div class="mb-3">
+      <input class="form-control" type="text" id="total2" disabled=""/>
+  </div>
+
+  <div class="mb-3">
+    <input class="form-control" type="text" id="total3" disabled=""/>
+</div>
+
+<div class="mb-3">
+  <input class="form-control" type="text" id="total4" disabled=""/>
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="total5" disabled=""/>
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="total6" disabled=""/>
+</div>
+
+<div class="mb-3">
+<input class="form-control" type="text" id="total7" disabled=""/>
+</div>
+
+<div class="mb-3">
+  <input class="form-control" type="number" id="total_final" disabled=""/>
+  </div>
+
+    </div>
+  </div>
+
+  <div class="buttons">                         
+    <button type="submit" id="salvar" class="btn btn-primary">✅Salvar</button>
+</div>
+<br>
+
+</div>
+                      </form>
+                    </form>
+                    </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+                    <script src="script.js"></script> 
+                    
+                  </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        
+    </body>
 </html>

@@ -11,7 +11,7 @@ function rascunho(){
 }
 
 function orcamento(){
-  location.href = "../orcamento/index.html";
+  location.href = "../orcamento/inicio.html";
 }
 
 function senha(){

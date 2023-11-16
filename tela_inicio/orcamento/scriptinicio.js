@@ -1,5 +1,5 @@
 function cadastrar_cliente(){
-    location.href = "index_cliente.html";
+    location.href = "../cadastro_cliente/index_cliente.html";
 
 }
 function cadastrar_funcionario(){
@@ -11,7 +11,7 @@ function rascunho(){
   }
 
   function orcamento(){
-    location.href = "../orcamento/inicio.html";
+    location.href = "inicio.html";
   }
 
   function senha(){

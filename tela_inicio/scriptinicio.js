@@ -18,7 +18,7 @@ function cadastrar_produto(){
 }
 
 function orcamento(){
-  location.href = "orcamento/index.html";
+  location.href = "orcamento/inicio.html";
 }
 
 function rascunho(){

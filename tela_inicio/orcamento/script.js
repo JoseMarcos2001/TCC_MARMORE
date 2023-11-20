@@ -56,13 +56,25 @@ function submitForm(e) {
   var qtd1 = getElementVal("qtd1");
   var larg1 = getElementVal("larg1");
   var comp1 = getElementVal("comp1");
+
+  var name2 = getElementVal("name2");
+  var qtd2 = getElementVal("qtd2");
+  var larg2 = getElementVal("larg2");
+  var comp2 = getElementVal("comp2");
+
+  var total1 = getElementVal("total1");
+  var total2 = getElementVal("total2");
+
+  var total_final = getElementVal("total_final");
   var status = "aberto";
  
 
-  saveMessages(CPF,nome,telefone,email,endereco,numPedido,name1,qtd1,larg1,comp1,status);
+  saveMessages(CPF,nome,telefone,email,endereco,numPedido,name1,qtd1,larg1,comp1,status,
+    name2,qtd2,larg2,comp2,total1,total2,total_final
+    );
   
 
-  alert("foi!");
+  alert("Orçamento cadastrado!");
 document.getElementById("orcamentoForm").reset();
 location.href = "inicio.html"; 
 }
@@ -75,13 +87,51 @@ function calculo(){
   console.log(area);
 
   const valorMetroQuadrado = 10;
-  const valorTotal = (area / valorMetroQuadrado)*quantidade;
+  const valorTotal = (area * valorMetroQuadrado)*quantidade;
   console.log(valorTotal);
+  const total = valorTotal.toFixed(2);
+  console.log(total);
 
-  
+  total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+  document.getElementById("total1").value=total;
+
+
+  const aux = document.getElementById("total1").value;
+  aux.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  document.getElementById("total_final").value=aux;
 }
 
-const saveMessages = (CPF,nome,telefone,email,endereco,numPedido,name1,qtd1,larg1,comp1,status) => {
+function calculo2(){
+  const largura2 = parseFloat($('#larg2').val());
+  const comprimento2 = parseFloat($('#comp2').val());
+  const quantidade2 = parseFloat($('#qtd2').val());
+  const area2 = largura2 * comprimento2;
+  console.log(area2);
+
+  const valorMetroQuadrado2 = 10;
+  const valorTotal2 = (area2 * valorMetroQuadrado2)*quantidade2;
+  console.log(valorTotal2);
+  const total2 = valorTotal2.toFixed(2);
+  total2.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+  document.getElementById("total2").value=total2;
+
+  const aux = document.getElementById("total2").value;
+  const aux2 = document.getElementById("total1").value;
+
+  const aux3 = Number(aux) + Number(aux2);
+  const teste = aux3.toFixed(2);
+  teste.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  document.getElementById("total_final").value=teste;
+
+}
+
+
+
+const saveMessages = (CPF,nome,telefone,email,endereco,numPedido,name1,qtd1,larg1,comp1,status,
+    name2,qtd2,larg2,comp2,total1,total2,total_final
+  ) => {
   firebase
     .database()
     .ref("orcamentoForm/" + numPedido)
@@ -96,6 +146,16 @@ const saveMessages = (CPF,nome,telefone,email,endereco,numPedido,name1,qtd1,larg
       qtd1: qtd1,
       larg1: larg1,
       comp1: comp1,
+
+      name2:name2,
+      qtd2: qtd2,
+      larg2:larg2,
+      comp2:comp2,
+
+      total1:total1,
+      total2:total2,
+      total_final,
+
       status:status,
     
   });

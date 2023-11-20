@@ -34,6 +34,11 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
                         <button class="btn btn-primary" id="sidebarToggle">Menu</button>
+
+                        <div class="anonymous">
+                            <h1>Orçamento Webmármore</h1>
+                            </div>
+                        
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -57,21 +62,24 @@
                         <form action="" id="clienteForm">  
                        
 <div class="buttons" id="noprint">
-    <button type="submit" id="buscar" class="btn btn-primary">🔎Buscar</button>
+    <button type="submit" id="buscar" class="btn btn-primary" style="display: none;">🔎Buscar</button>
     <button onclick ="window.print()" id="buscar" class="btn btn-primary">🖨Imprmir</button>
 </div>
 <br>
 
 <style>
+    .anonymous {display:none;}
     @media print { 
+    .anonymous {display:contents;}
     #noprint { display:none; } 
     body { background: #fff; }
+    
     }
     </style>
     
 <div class="mb-3">
     Nº PEDIDO                    
-    <input class="form-control" placeholder="Nº PEDIDO" type="text" id="pedido" required />
+    <input class="form-control" placeholder="Nº PEDIDO" type="text" id="pedido" required disabled=""/>
 </div>
 
 

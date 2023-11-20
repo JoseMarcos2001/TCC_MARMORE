@@ -55,7 +55,7 @@ const firebaseConfig = {
 
 function readFom() {
   nameV = document.getElementById("name").value;
-  pedido = document.getElementById("pedido").value;
+  pedido = pedidoFormatado;
   phoneV = document.getElementById("phone").value;
   emailV = document.getElementById("emailid").value;
   numV = document.getElementById("numID").value;
@@ -64,9 +64,11 @@ function readFom() {
   proname1=document.getElementById("name1").value;
     
 }
+window.onload = function()
+{
+    document.getElementById("buscar").click();
 
-  document.getElementById("buscar").onclick = function () {
-  readFom();
+    readFom();
   firebase
     .database()
     .ref("orcamentoForm/" + pedido)
@@ -82,6 +84,9 @@ function readFom() {
       document.getElementById("larg1").value = snap.val().larg1;
       document.getElementById("comp1").value = snap.val().comp1;
       document.getElementById("total1").value = snap.val().total1;
+      if("name2"==""){
+        document.getElementById("name2").value = " ";
+      }else
       document.getElementById("name2").value = snap.val().name2;
       document.getElementById("qtd2").value = snap.val().qtd2;
       document.getElementById("larg2").value = snap.val().larg2;
@@ -90,7 +95,8 @@ function readFom() {
 
       document.getElementById("total_final").value = snap.val().total_final;
     });
-};	
+} 
+  
   
 
 
